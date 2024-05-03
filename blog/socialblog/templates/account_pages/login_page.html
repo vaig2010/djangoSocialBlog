@@ -1,0 +1,35 @@
+{% extends 'base/base.html' %}
+
+{% comment %}Надо рассказать про следующие Bootstrap-классы:{% endcomment %}
+{% comment %}w-100{% endcomment %}
+{% comment %}m-auto{% endcomment %}
+{% comment %}h3{% endcomment %}
+{% comment %}fw-normal{% endcomment %}
+{% comment %}form-floating{% endcomment %}
+{% comment %}py-2{% endcomment %}
+
+{% block main %}
+  <div class="m-auto">
+    <form action="/account/login/" method="post">
+      {% csrf_token %}
+
+      {% if login_error %}
+        <h1 class="h3 mb-3 fw-normal">Ошибка при входе в систему</h1>
+      {% else %}
+        <h1 class="h3 mb-3 fw-normal">Войдите в систему</h1>
+      {% endif %}
+
+      <div class="form-floating">
+        {{ login_form.username }}
+        <label for="usernameInput">{{ login_form.username.label }}</label>
+      </div>
+
+      <div class="form-floating mt-2">
+        {{ login_form.password }}
+        <label for="passwordInput">{{ login_form.password.label }}</label>
+      </div>
+
+      <button class="btn btn-primary w-100 py-2 mt-2" type="submit">Войти в систему</button>
+    </form>
+  </div>
+{% endblock %}

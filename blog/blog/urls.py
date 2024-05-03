@@ -18,7 +18,11 @@ from django.contrib import admin
 from django.urls import path
 from socialblog.views import *
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', index_page),
+    path("", index_page),
+    path("blog/", blog_page),
+    path("blog/add/", blog_add_page),
+    path("account/registration/", registration_page),
+    path("account/login/", login_page),
+    path("account/logout/", logout_page),
     
 ]

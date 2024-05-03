@@ -1,0 +1,10 @@
+{% extends 'base/base.html' %}
+
+{% block main %}
+  <form action="/account/registration/" method="post">
+    {% csrf_token %}
+
+    {{ user_creation_form.as_p }}
+    <button class="btn btn-primary" type="submit">Регистрация пользователя</button>
+  </form>
+{% endblock %}
