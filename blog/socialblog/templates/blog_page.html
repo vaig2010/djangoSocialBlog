@@ -1,0 +1,26 @@
+{% extends 'base/base.html' %}
+
+
+{% block main %}
+  {% for blog_item in blog_items %}
+    <div class="card mt-2">
+      <div class="card-body">
+        <h5 class="card-title">{{ blog_item.title }}</h5>
+        <h6 class="card-subtitle mb-2 text-body-secondary">{{ blog_item.author }}</h6>
+        <p class="card-text">{{ blog_item.text }}</p>
+
+        <ul class="list-group list-group-flush mt-2">
+          {% for comment_item in blog_item.comment_items %}
+            <li class="list-group-item">{{ comment_item.text }}</li>
+          {% endfor %}
+        </ul>
+        
+        <form class="mt-2" action="/blog/?blog_id={{blog_item.id}}" method="post">
+            {% csrf_token %}
+            {{comment_form.text}}
+            <button class="btn btn-primary mt-2" type="submit">Оставить комментарий</button>
+        </form>
+      </div>
+    </div>
+  {% endfor %}
+{% endblock %}

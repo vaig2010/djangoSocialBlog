@@ -1,0 +1,62 @@
+{% comment %}Надо рассказать про следующие Bootstrap-классы:{% endcomment %}
+{% comment %}p-3{% endcomment %}
+{% comment %}border-bottom{% endcomment %}
+{% comment %}d-flex{% endcomment %}
+{% comment %}flex-wrap{% endcomment %}
+{% comment %}align-items-center{% endcomment %}
+{% comment %}justify-content-center{% endcomment %}
+{% comment %}justify-content-lg-start{% endcomment %}
+{% comment %}col-12{% endcomment %}
+{% comment %}col-lg-auto{% endcomment %}
+{% comment %}me-lg-auto{% endcomment %}
+{% comment %}mb-md-0{% endcomment %}
+{% comment %}px-2{% endcomment %}
+{% comment %}link-body-emphasis{% endcomment %}
+{% comment %}dropdown{% endcomment %}
+{% comment %}text-end{% endcomment %}
+{% comment %}d-block{% endcomment %}
+{% comment %}text-decoration-none{% endcomment %}
+{% comment %}dropdown-toggle{% endcomment %}
+{% comment %}dropdown-menu{% endcomment %}
+{% comment %}text-small{% endcomment %}
+
+{% comment %}Надо рассказать про следующие HTML-свойства:{% endcomment %}
+{% comment %}data-bs-toggle="dropdown"{% endcomment %}
+{% comment %}aria-expanded="false"{% endcomment %}
+
+<header class="p-3 mb-3 border-bottom">
+  <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+      {% for menu_item in menu_items %}
+        <li>
+          <a class="nav-link px-2 link-body-emphasis" href="{{ menu_item.link }}">{{ menu_item.text }}</a>
+        </li>
+      {% endfor %}
+
+      {% if user.is_authenticated %}
+        <li>
+          <a class="nav-link px-2 link-body-emphasis" href="/blog/add/">Написать статью</a>
+        </li>
+      {% endif %}
+    </ul>
+
+    <div class="dropdown text-end">
+      <a class="d-block link-body-emphasis text-decoration-none dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">{{ user }}</a>
+
+      <ul class="dropdown-menu text-small">
+        {% if user.is_authenticated %}
+          <li>
+            <a class="dropdown-item" href="/account/logout/">Выйти из системы</a>
+          </li>
+        {% else %}
+          <li>
+            <a class="dropdown-item" href="/account/login/">Войти в систему</a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="/account/registration/">Регистрация</a>
+          </li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</header>

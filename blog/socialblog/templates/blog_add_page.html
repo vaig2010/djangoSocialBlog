@@ -1,0 +1,22 @@
+{% extends 'base/base.html' %}
+
+{% block main %}
+<div class="m-auto">
+    <form action="/blog/add/" method="post">
+        {% csrf_token %}
+        {% if blog_added %}
+        <h1 class="h3 mb-3 fw-normal">Статья добавлена!</h1>
+        {% else %}
+          <h1 class="h3 mb-3 fw-normal">Напишите свою статью</h1>
+        {% endif %}
+  
+        <label class="form-label" for="titleInput">{{ blog_form.title.label }}</label>
+        {{ blog_form.title }}
+  
+        <label class="form-label mt-2" for="textInput">{{ blog_form.text.label }}</label>
+        {{ blog_form.text }}
+
+        <button class="btn btn-primary w-100 py-2 mt-2" type="submit">Добавить блог в систему</button>
+    </form>
+</div>
+{% endblock %}
